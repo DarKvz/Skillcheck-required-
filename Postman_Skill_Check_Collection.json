@@ -1,0 +1,89 @@
+{
+  "info": {
+    "name": "Postman API Fundamentals - Skill Check",
+    "_postman_id": "b7f5d7a6-9c9a-4a1e-9d3e-123456789abc",
+    "description": "Skill Check request for Postman API Fundamentals Student Expert",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "delete a book request",
+      "item": [
+        {
+          "name": "skill check",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{skillcheckBaseUrl}}/post?movieName=Inception",
+              "host": [
+                "{{skillcheckBaseUrl}}"
+              ],
+              "path": [
+                "post"
+              ],
+              "query": [
+                {
+                  "key": "movieName",
+                  "value": "Inception"
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "student-expert",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "skillcheck",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"actorName\": \"Leonardo DiCaprio\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const responseData = pm.response.json();",
+                  "",
+                  "pm.collectionVariables.set(",
+                  "  \"favoriteActor\",",
+                  "  responseData.json.actorName",
+                  ");"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "skillcheckBaseUrl",
+      "value": "https://postman-echo.com",
+      "type": "string"
+    }
+  ]
+}
